@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>RecipeHero</title>
+    <script>
+        function addToList() {
+            var txtToAdd = document.getElementById("enterIngredients").value,
+                listNode = document.getElementById("list"),
+                liNode = document.createElement("LI"),
+                txtNode = document.createTextNode(txtToAdd);
+            listNode.appendChild(txtNode);
+        }
+        function myfunction() {
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" id="enterIngredients" value="eNTER iNGREDITENS" />
+        <button onclick="addToList()">Add To Ingredients</button>
+        <a href="SearchResults.html">Search For Recipes</a>        <ul id='list'></ul>
+    </div>
+</body>
+</html>

@@ -5,7 +5,10 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+   <link rel="stylesheet" href="../jquery.mobile-1.4.5.css" />
+   <script src="https://code.jquery.com/jquery-2.2.4.js"
+           integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+           crossorigin="anonymous"></script>    <script src="../jquery.mobile-1.4.5.js"></script>
 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no">
@@ -13,45 +16,45 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>RecipeHero</title>
+    <script>
+        function addToList() {
+            var txtToAdd = document.getElementById("enterIngredients").value,
+                listNode = document.getElementById("list"),
+                liNode = document.createElement("LI"),
+                txtNode = document.createTextNode(txtToAdd);
+            listNode.appendChild(txtNode);
+            txtToAdd.value=""
 
+        }
+        function myfunction() {
+
+        }
+    </script>
 </head>
 <body>
-    <label for="Ingredient">Ingedient</label>
-    <input type="text" name="Ingredient" />
-    <button type="submit">Submit</button>
+    <!--<section data-role="page"></section>
+      <input type="text" id="enterIngredients"value="eNTER iNGREDITENS"/>
+    <button onclick="addToList()">Add To Ingredients</button>
+      <button onclick="searchForRecipes()">Search For Recipes</button>
+      <ul id='list'>
 
 
 
+      </ul>
 
-    <input type='text' id='idea' />
-    <input type='button' value='add to list' id='add'>
-
-    <ul id='list'>
-
-
-        <li> <b>Topics</b></li>
-
-    </ul>
-
-    <div class="app">
-        <h1>Apache Cordova</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>
-    </div>
-    <script type="text/javascript">
-
-        document.getElementById("add").onClick = function () {
-
-            var text = document.getElementById("idea").value;
-
-            var li = "<li>" + text + </li>;
-
-            document.getElementById("list").appendChild(li);
-        }
-
-    </script>
+      <div class="app">
+          <h1>Apache Cordova</h1>
+          <div id="deviceready" class="blink">
+              <p class="event listening">Connecting to Device</p>
+              <p class="event received">Device is Ready</p>
+          </div>
+      </div>-->
+    <label for="userName">UserName</label>
+    <input type="text" name="userName" />
+    <label for="pWord">Passord</label>
+a
+    <input type="text" name="pWord" />
+    <a href="profileCreation.html">Sign In</a>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>

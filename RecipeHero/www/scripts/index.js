@@ -20,7 +20,13 @@
         receivedElement.setAttribute('style', 'display:block;');
     
     };
-
+    function addToList() {
+        var txtToAdd = document.getElementById("enterIngredients").value,
+            listNode = document.getElementById("list"),
+            liNode = document.createElement("LI"),
+            txtNode = document.createTextNode(txtToAdd);
+        listNode.appendChild(txtNode);
+    }
     function onPause() {
         // TODO: This application has been suspended. Save application state here.
     };
