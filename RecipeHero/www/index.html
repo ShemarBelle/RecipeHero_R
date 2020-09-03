@@ -20,20 +20,20 @@
     <script>
       
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How%20much%20vitamin%20c%20is%20in%202%20apples%253F",
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
-            }
-        }
+        //var settings = {
+        //    "async": true,
+        //    "crossDomain": true,
+        //    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How%20much%20vitamin%20c%20is%20in%202%20apples%253F",
+        //    "method": "GET",
+        //    "headers": {
+        //        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        //        "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
+        //    }
+        //}
 
-        $.ajax(settings).done(function (response) {
-            console.log(response);
-        });
+        //$.ajax(settings).(function (response) {
+        //    console.log(response);
+        //});
         function addToList() {
             var txtToAdd = document.getElementById("enterIngredients").value,
                 listNode = document.getElementById("list"),
@@ -46,7 +46,7 @@
         function myfunction() {
 
         }
-        <!--var id = 1; // unique id for list items
+        var id = 1; // unique id for list items
         
 
         
@@ -171,72 +171,61 @@
             id++;
             
         }
-    </script>-->
+    </script>
+    <style>
+        ul {
+        list-style:none;
+        }
+        body {
+            background-image: url(images/6.jpg);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
+    <header data-role="header">
+        <a href="#home">Recipe Hero</a>
+        <nav data-role="navbar"></nav>
+        <ul>
+            <li><a href="#home">Recipe Hero</a></li>
+            <!-- <li><a href="#results">Recipe Hero</a></li> -->
+            <li><a href="#results"></a></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </header>
+  
+    <section data-role="page" id="home">
+        <div class="input">
 
-    <!--<section data-role="page"></section>
-      <input type="text" id="enterIngredients"value="eNTER iNGREDITENS"/>
-    <button onclick="addToList()">Add To Ingredients</button>
-      <button onclick="searchForRecipes()">Search For Recipes</button>
-      <ul id='list'>
+            <h3>Enter Item:</h3>
+
+            <input type="text" class="custinput" id="item-input" placeholder="Enter shopping item..." autofocus>
+
+            <button class="ui-btn btn" type="submit">add</button>
+            <a class="ui-btn" href="SearchResults.html">Search</a>
+        </div>
+        <div class="list">
 
 
+            <table class="items">
 
-      </ul>
+             
 
-      <div class="app">
-          <h1>Apache Cordova</h1>
-          <div id="deviceready" class="blink">
-              <p class="event listening">Connecting to Device</p>
-              <p class="event received">Device is Ready</p>
-          </div>
-      </div>-->
-    <!--First Video Code
-        <div data-role="page">
-        <label for="userName">UserName</label>
-        <input type="text" name="userName" />
-        <label for="pWord">Passord</label>
-        a
-        <input type="text" name="pWord" />
-        <a href="profileCreation.html">Sign In</a>
+                <tbody></tbody>
 
-    </div>-->
-    <div class="input">
-        
-        <h3>Enter Item:</h3>
-        
-        <input type="text" class="custinput" id="item-input" placeholder="Enter shopping item..." autofocus>
-        
-        <button type="submit" class="btn">add</button>
-        
-    </div>
+            </table>
+
+        </div>
+    </section>
+    
     
 
     
-    <div class="list">
-        
-        <h3>List:</h3>
-        
-        <table class="items">
-            
-            <thead>
-                
-                <tr>
-                    
-                    <th class="edit" colspan="3"><span>edit</span></th>
-                    
-                </tr>
-                
-            </thead>
-            
-            <tbody>
-                
-            </tbody>
-            
-        </table>
-        
-    </div>
+    
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>

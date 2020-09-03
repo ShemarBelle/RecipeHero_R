@@ -1,20 +1,77 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
+﻿<head>
     <title>Recipe Hero</title>
 </head>
 <body>
-    <div data-role="page">
-        <a href="profileCreation.html">Back</a>
-        <h3>Recipes</h3>
+    <style>
+        img {
+            width: 20%;
+            height: 20%;
+        }
+        h3 p{
+            float:right;
+            font-size:24px;
+           }
+        body {
+            background-image: url(images/6.jpg);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        ul {
+        list-style:none;
+        }
+        li {
+        float:none;
+        }
+    </style>
+    <section data-role="page" id="results">
         <ul>
-            <li>Tomato Bisque</li>
-            <li>Chicken Alfredo</li>
-            <li>ToadStool Linquini</li>
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+                        <img src="images/10.jpg" />
+                        <h3>An All American Burger</h3>        
+                        <p>Combine first 5 ingredients, mixing lightly but thoroughly. Shape into 4 patties. Grill burgers, covered, on a greased rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side.
+                        </p>
+                    </div>
+                </div>
+            </li>
 
 
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+
+                        <img src="images/3.jpg" alt="Alternate Text" />
+                        <h3>Oven Roaseted Garlic Lasagna</h3>
+                        <p>Roasted Garlic White Veggie Lasagna loaded with hearty vegetables and a super savory homemade roasted garlic white sauce. So delicious and fulfilling enough for even the meat eaters of the world! The instructions for Oven Roasting Garlic are attached below, but you should definitely check out this post for additional details! </p>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+                        <img src="images/9.jpg" alt="Alternate Text" />
+                        <h3>The Linguini</h3>
+                        <p>
+                            For picky eaters, try serving this easy meat sauce over whimsically shaped pasta, like bow ties, rotini, or wagon wheels.
+                        </p>
+                    </div>
+                </div>
+            </li>
+       <li>
+           <div class="searchResultContainer">
+               <div>
+                   <img src="images/2.jpg" alt="Alternate Text" />
+                   <h3>Four Cheddar Cheeseburger Sphagetti</h3>
+                   <p>Prepare spaghetti pasta according to package directions.</p>
+               </div>
+           </div>
+       </li>
         </ul>
-    </div>
+    </section>
 
 </body>
 </html>
