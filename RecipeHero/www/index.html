@@ -19,171 +19,63 @@
     <title>RecipeHero</title>
     <script>
       
+        var result = ""
+        function myfunction() {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+                    "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
+                }
+            }
 
-        //var settings = {
-        //    "async": true,
-        //    "crossDomain": true,
-        //    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How%20much%20vitamin%20c%20is%20in%202%20apples%253F",
-        //    "method": "GET",
-        //    "headers": {
-        //        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-        //        "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
-        //    }
-        //}
-
-        //$.ajax(settings).(function (response) {
-        //    console.log(response);
-        //});
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+        }
+   
+          
+        var query = '';
+        var triggered = false;
         function addToList() {
+
             var txtToAdd = document.getElementById("enterIngredients").value,
-                listNode = document.getElementById("list"),
-                liNode = document.createElement("LI"),
-                txtNode = document.createTextNode(txtToAdd);
-            listNode.appendChild(txtNode);
+            listNode = document.getElementById("list"),
+            liNode = document.createElement("li"),
+            txtNode = document.createTextNode(txtToAdd);
+            liNode.innerText = txtNode.nodeValue;
+            listNode.appendChild(liNode);
+            query += txtToAdd + ',';
+            var subquery = query.split(',');
+            console.log(subquery);
+
+         
+            for (var i = 0; i < subquery.length; i++) {
+              
+                    result += subquery[i]+',' ;
+            }
+           
+            console.log(result);
+        
             txtToAdd.value = ""
 
         }
-        function myfunction() {
-
+        function Clear() {
+            result = '';
+            listNode = document.getElementById("list");
+      
         }
-        var id = 1; // unique id for list items
-        
+        function myfuncttion() {
 
+        var y = document.getElementById(home).style.visibility = "hidden";
         
-        $(document).ready(function (e) {
-            
-            editButton();
-            
-
-            
-            $("tbody").on("click", ".cross", function () {
-                
-                $(this).closest("tr").remove();
-                
-            });
-            
-            
-            $("button").on("click", getInput);
-            
-
-            
-            $("tbody").on("click", ".box", function () {
-                
-                $(this).closest("tr").find("span").toggleClass("checked");
-                
-            });
-            
-
-            
-        });
-        
-
-        
-        // triggered on Enter
-        
-        $(document).on("keydown", function (e) {
-            
-            if (e.keyCode === 13) {
-                
-                getInput();
-                
-            }
-            
-        });
-        
-
-        
-
-        
-
-        
-        // Toggle delete icon when edit button is clicked
-        
-        function editButton() {
-            
-            $(".edit").on("click", "span", function () {
-                
-                $(".cross").toggle();
-                
-            });
-            
-        }
-        
-
-        
-
-        
-        // Obtaining customer input and then calling addItem() with the input
-        
-        function getInput() {
-            
-            var custInput = $(".custinput");
-            
-            var input = custInput.val();
-            
-
-            
-            if ((input !== "") && ($.trim(input) !== "")) {
-                
-                addItem(input);
-                
-                custInput.val("");
-                
-            }
-            
-        }
-        
-
-        
-
-        
-        /******************************************************************************
-        
-          adding item to the list
-        
-          increment id counter for unique id
-        
-        *******************************************************************************/
-        
-        function addItem(message) {
-            
-
-            
-            $(".cross").hide(); // hiding the delete icon
-            
-
-            
-            var checkbox = "<td class=\"check\">" + "<input type=\"checkbox\" id=\"item" + id + "\" class=\"box\">" + "<label for=\"item" + id + "\" class=\"check-label\"></label></td>";
-            
-
-            
-            var content = "<td class=\"content\"><span>" + message + "</span></td>";
-            
-
-            
-            var delIcon = "<td><img src=\"img/cross.png\" alt=\"cross\" class=\"cross\"></td>";
-            
-
-            
-            $("tbody").append("<tr>" + checkbox + content + delIcon + "</tr>");
-            
-            
-            id++;
-            
+        var x = document.getElementById(Search_Results).style.visibility = "visible";
         }
     </script>
-    <style>
-        ul {
-        list-style:none;
-        }
-        body {
-            background-image: url(images/6.jpg);
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
+    
 </head>
 <body>
     <header data-role="header">
@@ -192,10 +84,22 @@
         <ul>
             <li><a href="#home">Recipe Hero</a></li>
             <!-- <li><a href="#results">Recipe Hero</a></li> -->
-            <li><a href="#results"></a></li>
-            <li></li>
+            <li><a href="#results">Past Seaches</a></li>
+            <li><a href="#results">Favorites</a><</li>
+            <li><a href="#results">Shopping List</a><</li>
+
             <li></li>
         </ul>
+        <button class="ui-btn btn" type="submit" onclick="myfunction()">Home</button>
+
+        <button class="ui-btn btn" type="submit" onclick="Clear()">ClearList</button>
+        <button class="ui-btn btn" type="submit" onclick="Clear()">Back</button>
+        <button class="ui-btn btn" type="submit" onclick="Clear()">Save</button>
+        <button class="ui-btn btn" type="submit" onclick="Clear()">Favorite</button>
+        <button class="ui-btn btn" type="submit" onclick="Clear()">Shopping List</button>
+        <button class="ui-btn btn" type="submit" onclick="Clear()">Settings</button>
+
+
     </header>
   
     <section data-role="page" id="home">
@@ -203,25 +107,63 @@
 
             <h3>Enter Item:</h3>
 
-            <input type="text" class="custinput" id="item-input" placeholder="Enter shopping item..." autofocus>
+            <input type="text" class="custinput" id="enterIngredients" placeholder="Enter shopping item..." autofocus>
 
-            <button class="ui-btn btn" type="submit">add</button>
-            <a class="ui-btn" href="SearchResults.html">Search</a>
+            <button class="ui-btn btn" type="submit" onclick="addToList()">add</button>
+            <button class="ui-btn btn" type="submit" onclick="myfunction()">Search</button>
+            <ul id="list"></ul>
         </div>
-        <div class="list">
-
-
-            <table class="items">
-
-             
-
-                <tbody></tbody>
-
-            </table>
-
-        </div>
+        
     </section>
-    
+    <section style="visibility:hidden" id="Search_Results" class="result">
+
+        <ul>
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+                        <img src="images/10.jpg" />
+                        <h3>An All American Burger</h3>
+                        <p>
+                            Combine first 5 ingredients, mixing lightly but thoroughly. Shape into 4 patties. Grill burgers, covered, on a greased rack over medium direct heat until a thermometer reads 160° and juices run clear, about 6 minutes on each side.
+                        </p>
+                    </div>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+
+                        <img src="images/3.jpg" alt="Alternate Text" />
+                        <h3>Oven Roaseted Garlic Lasagna</h3>
+                        <p>Roasted Garlic White Veggie Lasagna loaded with hearty vegetables and a super savory homemade roasted garlic white sauce. So delicious and fulfilling enough for even the meat eaters of the world! The instructions for Oven Roasting Garlic are attached below, but you should definitely check out this post for additional details! </p>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+                        <img src="images/9.jpg" alt="Alternate Text" />
+                        <h3>The Linguini</h3>
+                        <p>
+                            For picky eaters, try serving this easy meat sauce over whimsically shaped pasta, like bow ties, rotini, or wagon wheels.
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="searchResultContainer">
+                    <div>
+                        <img src="images/2.jpg" alt="Alternate Text" />
+                        <h3>Four Cheddar Cheeseburger Sphagetti</h3>
+                        <p>Prepare spaghetti pasta according to package directions.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
     
 
     
