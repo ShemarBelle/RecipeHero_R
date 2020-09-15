@@ -22,6 +22,12 @@
         var result = ""
         function myfunction() {
             var settings = {
+                success: function (data) {
+                    document.getElementById("foodItemTitle").innerText = data[0].title;
+                    document.getElementById("foodImage").src=data[0].image
+                    console.log("Complete");
+                    
+                },
                 "async": true,
                 "crossDomain": true,
                 "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
@@ -30,8 +36,9 @@
                     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
                     "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
                 }
-            }
 
+            }
+           
             $.ajax(settings).done(function (response) {
                 console.log(response);
             });
@@ -54,10 +61,8 @@
 
          
             for (var i = 0; i < subquery.length; i++) {
-              
-                    result += subquery[i]+',' ;
+            result += subquery[i] + ','+' ' ;
             }
-           
             console.log(result);
         
             txtToAdd.value = ""
@@ -81,23 +86,14 @@
     <header data-role="header">
         <a href="#home">Recipe Hero</a>
         <nav data-role="navbar"></nav>
-        <ul>
-            <li><a href="#home">Recipe Hero</a></li>
-            <!-- <li><a href="#results">Recipe Hero</a></li> -->
-            <li><a href="#results">Past Seaches</a></li>
-            <li><a href="#results">Favorites</a><</li>
-            <li><a href="#results">Shopping List</a><</li>
+  
+        <button class="ui-btn btn ui-icon-home  ui-btn-icon-top" type="submit" onclick="myfunction()">Home</button>
 
-            <li></li>
-        </ul>
-        <button class="ui-btn btn" type="submit" onclick="myfunction()">Home</button>
-
-        <button class="ui-btn btn" type="submit" onclick="Clear()">ClearList</button>
-        <button class="ui-btn btn" type="submit" onclick="Clear()">Back</button>
-        <button class="ui-btn btn" type="submit" onclick="Clear()">Save</button>
-        <button class="ui-btn btn" type="submit" onclick="Clear()">Favorite</button>
-        <button class="ui-btn btn" type="submit" onclick="Clear()">Shopping List</button>
-        <button class="ui-btn btn" type="submit" onclick="Clear()">Settings</button>
+        <button class="ui-btn btn ui-icon-delete  ui-btn-icon-top" type="submit" onclick="Clear()">ClearList</button>
+        <button class="ui-btn btn ui-icon-arrow-l ui-btn-icon-top" type="submit" onclick="Clear()">Back</button>
+        <button class="ui-btn btn ui-icon-star  ui-btn-icon-top" type="submit" onclick="Clear()">Favorite</button>
+        <button class="ui-btn btn ui-icon-grid  ui-btn-icon-top" type="submit" onclick="Clear()">Shopping List</button>
+        <button class="ui-btn btn ui-icon-gear  ui-btn-icon-top " type="submit" onclick="Clear()">Settings</button>
 
 
     </header>
@@ -113,7 +109,16 @@
             <button class="ui-btn btn" type="submit" onclick="myfunction()">Search</button>
             <ul id="list"></ul>
         </div>
-        
+        <div id="results">
+            <img id="foodImage" alt="Food Image" />
+            <h3 id="foodItemTitle"></h3>
+            <p>Food Information</p>
+        </div>
+        <div id="stage" style="background-color:blue;">
+
+        </div>
+
+
     </section>
     <section style="visibility:hidden" id="Search_Results" class="result">
 
