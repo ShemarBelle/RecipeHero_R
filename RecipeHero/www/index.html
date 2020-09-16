@@ -79,6 +79,31 @@
         
         var x = document.getElementById(Search_Results).style.visibility = "visible";
         }
+
+        //Shows Search Results and handles scrolling
+        function ShowResults() {
+
+        }
+
+        //Called By Save To Save / Favorite Current Search
+        function SaveResults() {
+
+        }
+
+        //Displays The Settings Screen And All Widgets
+        function Settings() {
+
+        }
+
+        //Displays the Last Screen
+        function Back() {
+
+        }
+
+        //Shows Ingredients that are requiredd and sends a notification when at grocery sotres 
+        function Shopping_List() {
+
+        }
     </script>
     
 </head>
@@ -89,11 +114,11 @@
   
         <button class="ui-btn btn ui-icon-home  ui-btn-icon-top" type="submit" onclick="myfunction()">Home</button>
 
-        <button class="ui-btn btn ui-icon-delete  ui-btn-icon-top" type="submit" onclick="Clear()">ClearList</button>
-        <button class="ui-btn btn ui-icon-arrow-l ui-btn-icon-top" type="submit" onclick="Clear()">Back</button>
-        <button class="ui-btn btn ui-icon-star  ui-btn-icon-top" type="submit" onclick="Clear()">Favorite</button>
-        <button class="ui-btn btn ui-icon-grid  ui-btn-icon-top" type="submit" onclick="Clear()">Shopping List</button>
-        <button class="ui-btn btn ui-icon-gear  ui-btn-icon-top " type="submit" onclick="Clear()">Settings</button>
+        <button class="ui-btn-inline btn ui-icon-delete  ui-btn-icon-top" type="submit" onclick="Clear()">Clear</button>
+        <button class="ui-btn-inline btn ui-icon-arrow-l ui-btn-icon-top" type="submit" onclick="Clear()">Back</button>
+        <button class="ui-btn-inline btn ui-icon-star  ui-btn-icon-top" type="submit" onclick="Clear()">Favorite</button>
+        <button class="ui-btn-inline btn ui-icon-grid  ui-btn-icon-top" type="submit" onclick="Clear()">Shopping List</button>
+        <button class="ui-btn-inline btn ui-icon-gear  ui-btn-icon-top " type="submit" onclick="Clear()">Settings</button>
 
 
     </header>
@@ -110,6 +135,22 @@
             <ul id="list"></ul>
         </div>
         <div id="results">
+            <img id="foodImage" alt="Food Image" />
+            <h3 id="foodItemTitle"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage" alt="Food Image" />
+            <h3 id="foodItemTitle"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage" alt="Food Image" />
+            <h3 id="foodItemTitle"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage" alt="Food Image" />
+            <h3 id="foodItemTitle"></h3>
+            <p>Food Information</p>
+
             <img id="foodImage" alt="Food Image" />
             <h3 id="foodItemTitle"></h3>
             <p>Food Information</p>
