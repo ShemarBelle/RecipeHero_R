@@ -6,6 +6,9 @@
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
     <link rel="stylesheet" href="../jquery.mobile-1.4.5.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js"
             integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
@@ -18,86 +21,138 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>RecipeHero</title>
     <script>
-      
+
         var result = ""
         function myfunction() {
-            var settings = {
-                success: function (data) {
-                    document.getElementById("foodItemTitle").innerText = data[0].title;
-                    document.getElementById("foodImage").src=data[0].image
-                    console.log("Complete");
-                    
-                },
-                "async": true,
-                "crossDomain": true,
-                "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-                    "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
-                }
+            //var settings = {
+            //    success: function (data) {
+            //        document.getElementById("foodItemTitle").innerText = data[0].title;
+            //        document.getElementById("foodImage").src=data[0].image
+            //        console.log("Complete");
 
-            }
-           
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-            });
+            //    },
+            //    "async": true,
+            //    "crossDomain": true,
+            //    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
+            //    "method": "GET",
+            //    "headers": {
+            //        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            //        "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
+            //    }
+
+            //}
+
+            //$.ajax(settings).done(function (response) {
+            //    console.log(response);
+            //});
+
+
+            document.getElementById("home").style.visibility = "hidden";
         }
-   
-          
+
+
         var query = '';
         var triggered = false;
         function addToList() {
 
             var txtToAdd = document.getElementById("enterIngredients").value,
-            listNode = document.getElementById("list"),
-            liNode = document.createElement("li"),
-            txtNode = document.createTextNode(txtToAdd);
+                listNode = document.getElementById("list"),
+                liNode = document.createElement("li"),
+                txtNode = document.createTextNode(txtToAdd);
             liNode.innerText = txtNode.nodeValue;
             listNode.appendChild(liNode);
             query += txtToAdd + ',';
             var subquery = query.split(',');
             console.log(subquery);
 
-         
+
             for (var i = 0; i < subquery.length; i++) {
-            result += subquery[i] + ','+' ' ;
+                result += subquery[i] + ',' + ' ';
             }
             console.log(result);
-        
+
             txtToAdd.value = ""
 
         }
         function Clear() {
             result = '';
             listNode = document.getElementById("list");
-      
+
         }
         function myfuncttion() {
 
-        var y = document.getElementById(home).style.visibility = "hidden";
-        
-        var x = document.getElementById(Search_Results).style.visibility = "visible";
+            var y = document.getElementById(home).style.visibility = "hidden";
+
+            var x = document.getElementById(Search_Results).style.visibility = "visible";
+        }
+
+        //Shows Search Results and handles scrolling
+        function ShowResults() {
+
+        }
+
+        //Called By Save To Save / Favorite Current Search
+        function SaveResults() {
+
+        }
+
+        //Displays The Settings Screen And All Widgets
+        function Settings() {
+
+        }
+
+        //Displays the Last Screen
+        function Back() {
+
+        }
+
+        //Shows Ingredients that are requiredd and sends a notification when at grocery sotres
+        function Shopping_List() {
+
         }
     </script>
-    
+    <style>
+        input {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header data-role="header">
-        <a href="#home">Recipe Hero</a>
-        <nav data-role="navbar"></nav>
-  
-        <button class="ui-btn btn ui-icon-home  ui-btn-icon-top" type="submit" onclick="myfunction()">Home</button>
+        <nav data-role="navbar">
 
-        <button class="ui-btn btn ui-icon-delete  ui-btn-icon-top" type="submit" onclick="Clear()">ClearList</button>
-        <button class="ui-btn btn ui-icon-arrow-l ui-btn-icon-top" type="submit" onclick="Clear()">Back</button>
-        <button class="ui-btn btn ui-icon-star  ui-btn-icon-top" type="submit" onclick="Clear()">Favorite</button>
-        <button class="ui-btn btn ui-icon-grid  ui-btn-icon-top" type="submit" onclick="Clear()">Shopping List</button>
-        <button class="ui-btn btn ui-icon-gear  ui-btn-icon-top " type="submit" onclick="Clear()">Settings</button>
+            <ul>
+                <li>
+                    <a data-icon="home" class="ui-btn-inline " href="#home" onclick="myfunction()">Home</a>
+                </li>
+                <li>
+                    <a data-icon="delete" class="ui-btn btn ui-icon-delete  ui-btn-icon-top" onclick="Clear()">Clear</a>
+                </li>
+                <li>
+                    <a data-icon="arrow-l" class="ui-btn btn ui-icon-arrow-l ui-btn-icon-top" onclick="Back()">Back</a>
+                </li>
+                <li>
+                    <a data-icon="star" class="ui-btn btn ui-icon-star  ui-btn-icon-top" href="#favorite" onclick="Clear()">Favorite</a>
+                </li>
+                <li>
+                    <a data-icon="grid" class="ui-btn btn ui-icon-grid  ui-btn-icon-top" href="#shoppingList" onclick="Clear()">Shopping List</a>
+                </li>
+                <li>
+                    <a data-icon="gear" class="ui-btn ui-icon-gear  ui-btn-icon-left " href="#settings" onclick="Clear()">Settings</a>
+                </li>
+            </ul>
+
+
+
+
+
+
+        </nav>
+
 
 
     </header>
-  
+
     <section data-role="page" id="home">
         <div class="input">
 
@@ -113,10 +168,24 @@
             <img id="foodImage" alt="Food Image" />
             <h3 id="foodItemTitle"></h3>
             <p>Food Information</p>
-        </div>
-        <div id="stage" style="background-color:blue;">
 
+            <img id="foodImage2" alt="Food Image" />
+            <h3 id="foodItemTitle2"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage3" alt="Food Image" />
+            <h3 id="foodItemTitle3"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage4" alt="Food Image" />
+            <h3 id="foodItemTitle4"></h3>
+            <p>Food Information</p>
+
+            <img id="foodImage5" alt="Food Image" />
+            <h3 id="foodItemTitle5"></h3>
+            <p>Food Information</p>
         </div>
+
 
 
     </section>
@@ -169,12 +238,14 @@
             </li>
         </ul>
     </section>
-    
 
-    
-    
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <section data-role="page" id="shoppingLIst"></section>
+    <section data-role="page" id="Favorite"></section>
+    <section data-role="page" id="Settings"></section>
+
+    <footer data-role="footer">
+
+    </footer>
+
 </body>
 </html>
