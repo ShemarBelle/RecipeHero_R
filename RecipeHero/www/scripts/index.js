@@ -14,7 +14,6 @@ let trigger=false;
     
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         trigger = true;
-    
     };
 
     function onPause() {

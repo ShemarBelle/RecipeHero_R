@@ -21,36 +21,62 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>RecipeHero</title>
     <script>
-
+     
         var result = ""
         function myfunction() {
-            //var settings = {
-            //    success: function (data) {
-            //        document.getElementById("foodItemTitle").innerText = data[0].title;
-            //        document.getElementById("foodImage").src=data[0].image
-            //        console.log("Complete");
+            var settings = {
+                success: function (data) {
+                    document.getElementById("foodItemTitle").innerText = data[0].title;
+                    document.getElementById("foodImage").src=data[0].image
+                    console.log("Complete");
+            document.getElementById("foodItemTitle").innerText = data[0].title;
+            document.getElementById("foodImage").src = data[0].image
 
-            //    },
-            //    "async": true,
-            //    "crossDomain": true,
-            //    "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
-            //    "method": "GET",
-            //    "headers": {
-            //        "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            //        "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
-            //    }
+            document.getElementById("foodItemTitle2").innerText = data[1].title;
+            document.getElementById("foodImage2").src = data[1].image
 
-            //}
+            document.getElementById("foodItemTitle3").innerText = data[2].title;
+            document.getElementById("foodImage3").src = data[2].image
 
-            //$.ajax(settings).done(function (response) {
-            //    console.log(response);
-            //});
+            document.getElementById("foodItemTitle4").innerText = data[3].title;
+            document.getElementById("foodImage4").src = data[3].image
+
+            document.getElementById("foodItemTitle5").innerText = data[4].title;
+            document.getElementById("foodImage5").src = data[4].image
+
+                },
+                "async": true,
+                "crossDomain": true,
+                "url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=" + result,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+                    "x-rapidapi-key": "b1fabcb175msh0fc932651ba86a2p123d02jsn7de68217e81e"
+                }
+
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
 
 
-            document.getElementById("home").style.visibility = "hidden";
         }
-
-
+        var siteCollection = [];
+        var currentScreen;
+        var previousScreen;
+        function populateScreens() {
+            siteCollection[0] = document.getElementById("shoppingLIst");
+            siteCollection[1] = document.getElementById("Favorite");
+            siteCollection[2] = document.getElementById("Settings");
+            siteCollection[3] = document.getElementById("Search_Results");
+            siteCollection[4] = document.getElementById("home");
+            previousScreen = siteCollection[4];
+            console.log(previousScreen);
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            populateScreens();
+        })
         var query = '';
         var triggered = false;
         function addToList() {
@@ -60,7 +86,12 @@
                 liNode = document.createElement("li"),
                 txtNode = document.createTextNode(txtToAdd);
             liNode.innerText = txtNode.nodeValue;
+            liNode.classList.add("ui-listview-item");
+            var divider = document.createElement("li");
+            divider.classList.add("ui.listview-divider");
             listNode.appendChild(liNode);
+            listNode.appendChild(divider);
+
             query += txtToAdd + ',';
             var subquery = query.split(',');
             console.log(subquery);
@@ -69,6 +100,7 @@
             for (var i = 0; i < subquery.length; i++) {
                 result += subquery[i] + ',' + ' ';
             }
+
             console.log(result);
 
             txtToAdd.value = ""
@@ -80,10 +112,10 @@
 
         }
         function myfuncttion() {
-
-            var y = document.getElementById(home).style.visibility = "hidden";
-
-            var x = document.getElementById(Search_Results).style.visibility = "visible";
+            currentScreen = siteCollection[4];
+            currentScreen.style.visibility = "visible"
+            previousScreen.style.visibility = "hidden";
+            previousScreen = currentScreen;
         }
 
         //Shows Search Results and handles scrolling
@@ -98,18 +130,33 @@
 
         //Displays The Settings Screen And All Widgets
         function Settings() {
+            currentScreen = siteCollection[2] ;
+            currentScreen.style.visibility = "visible"
+            previousScreen.style.visibility = "hidden";
+            previousScreen = currentScreen;
+        }
+        function Favorites() {
+            currentScreen = siteCollection[1];
+            currentScreen.style.visibility = "visible"
+            previousScreen.style.visibility = "hidden";
+            previousScreen = currentScreen;
 
         }
-
         //Displays the Last Screen
         function Back() {
-
+            window.history.back();
         }
-
-        //Shows Ingredients that are requiredd and sends a notification when at grocery sotres
         function Shopping_List() {
-
+            currentScreen = siteCollection[0];
+            currentScreen.style.visibility="visible"
+            previousScreen.style.visibility = "hidden";
+            previousScreen = currentScreen;
+            var storage = window.localStorage;
+            storage.setItem(key, value) // Pass a key name and its value to add or update that key.
+            var value = storage.getItem(key); // Pass a key name to get its value.
+            storage.removeItem(key) 
         }
+  
     </script>
     <style>
         input {
@@ -120,37 +167,27 @@
 <body>
     <header data-role="header">
         <nav data-role="navbar">
-
             <ul>
                 <li>
-                    <a data-icon="home" class="ui-btn-inline " href="#home" onclick="myfunction()">Home</a>
+                    <a  class="ui-btn ui-icon-home " href="#home" onclick="myfunction()">Home</a>
                 </li>
                 <li>
-                    <a data-icon="delete" class="ui-btn btn ui-icon-delete  ui-btn-icon-top" onclick="Clear()">Clear</a>
+                    <a  class="ui-btn  ui-icon-delete  ui-btn-icon-right" onclick="Clear()">Clear</a>
                 </li>
                 <li>
-                    <a data-icon="arrow-l" class="ui-btn btn ui-icon-arrow-l ui-btn-icon-top" onclick="Back()">Back</a>
+                    <a class="ui-btn  ui-icon-arrow-l ui-btn-icon-right" onclick="Back()">Back</a>
                 </li>
                 <li>
-                    <a data-icon="star" class="ui-btn btn ui-icon-star  ui-btn-icon-top" href="#favorite" onclick="Clear()">Favorite</a>
+                    <a  class="ui-btn  ui-icon-star  ui-btn-icon-right" href="#favorite" onclick="Favorites()">Favorite</a>
                 </li>
                 <li>
-                    <a data-icon="grid" class="ui-btn btn ui-icon-grid  ui-btn-icon-top" href="#shoppingList" onclick="Clear()">Shopping List</a>
+                    <a class="ui-btn  ui-icon-grid  ui-btn-icon-right" href="#shoppingList" onclick="Shopping_List()">Shopping List</a>
                 </li>
                 <li>
-                    <a data-icon="gear" class="ui-btn ui-icon-gear  ui-btn-icon-left " href="#settings" onclick="Clear()">Settings</a>
+                    <a class="ui-btn ui-icon-gear  ui-btn-icon-right " href="#settings" onclick="Clear()">Settings</a>
                 </li>
             </ul>
-
-
-
-
-
-
         </nav>
-
-
-
     </header>
 
     <section data-role="page" id="home">
@@ -162,7 +199,7 @@
 
             <button class="ui-btn btn" type="submit" onclick="addToList()">add</button>
             <button class="ui-btn btn" type="submit" onclick="myfunction()">Search</button>
-            <ul id="list"></ul>
+            <ul class="ui-listview" id="list"></ul>
         </div>
         <div id="results">
             <img id="foodImage" alt="Food Image" />
@@ -190,7 +227,6 @@
 
     </section>
     <section style="visibility:hidden" id="Search_Results" class="result">
-
         <ul>
             <li>
                 <div class="searchResultContainer">
