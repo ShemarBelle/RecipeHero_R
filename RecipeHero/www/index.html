@@ -5,6 +5,7 @@
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../jquery.mobile-1.4.5.css" />
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
@@ -21,28 +22,41 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>RecipeHero</title>
     <script>
-     
+
         var result = ""
+        var currentScreen;
+        var previousScreen;
+        var query = '';
+        var triggered = false;
+        var siteCollection = [];
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
         function myfunction() {
             var settings = {
                 success: function (data) {
                     document.getElementById("foodItemTitle").innerText = data[0].title;
-                    document.getElementById("foodImage").src=data[0].image
+                    document.getElementById("foodImage").src = data[0].image
                     console.log("Complete");
-            document.getElementById("foodItemTitle").innerText = data[0].title;
-            document.getElementById("foodImage").src = data[0].image
+                    document.getElementById("foodItemTitle").innerText = data[0].title;
+                    document.getElementById("foodImage").src = data[0].image
 
-            document.getElementById("foodItemTitle2").innerText = data[1].title;
-            document.getElementById("foodImage2").src = data[1].image
+                    document.getElementById("foodItemTitle2").innerText = data[1].title;
+                    document.getElementById("foodImage2").src = data[1].image
 
-            document.getElementById("foodItemTitle3").innerText = data[2].title;
-            document.getElementById("foodImage3").src = data[2].image
+                    document.getElementById("foodItemTitle3").innerText = data[2].title;
+                    document.getElementById("foodImage3").src = data[2].image
 
-            document.getElementById("foodItemTitle4").innerText = data[3].title;
-            document.getElementById("foodImage4").src = data[3].image
+                    document.getElementById("foodItemTitle4").innerText = data[3].title;
+                    document.getElementById("foodImage4").src = data[3].image
 
-            document.getElementById("foodItemTitle5").innerText = data[4].title;
-            document.getElementById("foodImage5").src = data[4].image
+                    document.getElementById("foodItemTitle5").innerText = data[4].title;
+                    document.getElementById("foodImage5").src = data[4].image
 
                 },
                 "async": true,
@@ -62,9 +76,7 @@
 
 
         }
-        var siteCollection = [];
-        var currentScreen;
-        var previousScreen;
+
         function populateScreens() {
             siteCollection[0] = document.getElementById("shoppingLIst");
             siteCollection[1] = document.getElementById("Favorite");
@@ -72,13 +84,15 @@
             siteCollection[3] = document.getElementById("Search_Results");
             siteCollection[4] = document.getElementById("home");
             previousScreen = siteCollection[4];
+            currentScreen = previousScreen;
             console.log(previousScreen);
+            console.log(currentScreen);
+
         }
         document.addEventListener('DOMContentLoaded', (event) => {
             populateScreens();
         })
-        var query = '';
-        var triggered = false;
+
         function addToList() {
 
             var txtToAdd = document.getElementById("enterIngredients").value,
@@ -116,6 +130,9 @@
             currentScreen.style.visibility = "visible"
             previousScreen.style.visibility = "hidden";
             previousScreen = currentScreen;
+            console.log(previousScreen);
+            console.log(currentScreen);
+
         }
 
         //Shows Search Results and handles scrolling
@@ -130,64 +147,121 @@
 
         //Displays The Settings Screen And All Widgets
         function Settings() {
-            currentScreen = siteCollection[2] ;
+            currentScreen = siteCollection[2];
             currentScreen.style.visibility = "visible"
             previousScreen.style.visibility = "hidden";
             previousScreen = currentScreen;
+            console.log(previousScreen);
+            console.log(currentScreen);
+
         }
         function Favorites() {
             currentScreen = siteCollection[1];
             currentScreen.style.visibility = "visible"
             previousScreen.style.visibility = "hidden";
             previousScreen = currentScreen;
+            console.log(previousScreen);
+            console.log(currentScreen);
 
         }
         //Displays the Last Screen
         function Back() {
             window.history.back();
+            console.log(previousScreen);
+            console.log(currentScreen);
+
         }
         function Shopping_List() {
             currentScreen = siteCollection[0];
-            currentScreen.style.visibility="visible"
+            currentScreen.style.visibility = "visible"
             previousScreen.style.visibility = "hidden";
-            previousScreen = currentScreen;
+            console.log(previousScreen);
+            console.log(currentScreen);
+
             var storage = window.localStorage;
             storage.setItem(key, value) // Pass a key name and its value to add or update that key.
             var value = storage.getItem(key); // Pass a key name to get its value.
-            storage.removeItem(key) 
+            storage.removeItem(key)
         }
-  
+
     </script>
     <style>
         input {
             width: 100%;
         }
+        /* Style the navigation menu */
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+        }
+
+            /* Hide the links inside the navigation menu (except for logo/home) */
+            .topnav #myLinks {
+                display: none;
+            }
+
+            /* Style navigation menu links */
+            .topnav a {
+                color: white;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                display: block;
+            }
+
+                /* Style the hamburger menu */
+                .topnav a.icon {
+                    background: black;
+                    display: block;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+
+                /* Add a grey background color on mouse-over */
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+        /* Style the active link (or home/logo) */
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        body {
+            background-image: url(images/6.jpg);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
     <header data-role="header">
-        <nav data-role="navbar">
-            <ul>
-                <li>
-                    <a  class="ui-btn ui-icon-home " href="#home" onclick="myfunction()">Home</a>
-                </li>
-                <li>
-                    <a  class="ui-btn  ui-icon-delete  ui-btn-icon-right" onclick="Clear()">Clear</a>
-                </li>
-                <li>
-                    <a class="ui-btn  ui-icon-arrow-l ui-btn-icon-right" onclick="Back()">Back</a>
-                </li>
-                <li>
-                    <a  class="ui-btn  ui-icon-star  ui-btn-icon-right" href="#favorite" onclick="Favorites()">Favorite</a>
-                </li>
-                <li>
-                    <a class="ui-btn  ui-icon-grid  ui-btn-icon-right" href="#shoppingList" onclick="Shopping_List()">Shopping List</a>
-                </li>
-                <li>
-                    <a class="ui-btn ui-icon-gear  ui-btn-icon-right " href="#settings" onclick="Clear()">Settings</a>
-                </li>
-            </ul>
-        </nav>
+
+
+        <!-- Top Navigation Menu -->
+        <div class="topnav">
+            <a href="#home" class="active">Recipe Hero</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                <a class="ui-btn ui-icon-home ui-btn-icon-right " href="#home" onclick="myfunction()">Home</a>
+                <a class="ui-btn  ui-icon-delete  ui-btn-icon-right" onclick="Clear()">Clear</a>
+                <a class="ui-btn  ui-icon-arrow-l ui-btn-icon-right" onclick="Back()">Back</a>
+                <a class="ui-btn  ui-icon-star  ui-btn-icon-right" href="#favorite" onclick="Favorites()">Favorite</a>
+                <a class="ui-btn  ui-icon-grid  ui-btn-icon-right" href="#shoppingList" onclick="Shopping_List()">Shopping List</a>
+                <a class="ui-btn ui-icon-gear  ui-btn-icon-right " href="#settings" onclick="Settings()">Settings</a>
+
+
+            </div>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
     </header>
 
     <section data-role="page" id="home">
@@ -201,7 +275,7 @@
             <button class="ui-btn btn" type="submit" onclick="myfunction()">Search</button>
             <ul class="ui-listview" id="list"></ul>
         </div>
-        <div id="results">
+        <div id="results" style="visibility:hidden">
             <img id="foodImage" alt="Food Image" />
             <h3 id="foodItemTitle"></h3>
             <p>Food Information</p>
